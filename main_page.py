@@ -9,27 +9,44 @@ def index(self):
   response = """<html>
   <head>
   	<title>Web Houdini</title>
+	<link rel="stylesheet" href="/flat_web/index.css" type="text/css" />
+	<script src="/flat_web/index.js" type="text/javascript"> </script>
   </head>
   <body>
-  	<h1>Web Houdini</h1>
-	<a href="https://github.com/abhishekkr/webhoudini">WebHoudini Project Repo @Github</a>
-	<h3>The Web Magician showing Online Tricks</h3>
-	<h5 stylw="float:bottom; margin-bottom:5px;">
-		<i>will be adding more...</i><br/><br/>
-
-             <div class="main_pg" style="text-align:center;">
+    <table> 
+      <tr>
+      <td>
+        <img src="/flat_web/logoY480px.jpg" alt="logo" /> 
+	<div class="outline txtcenter" style="width:235px;">
+  	  <div id="title">Web Houdini</div>
+	  <div id="title_tag">The Web Magician...<br/>showing Online Tricks</div>
+	  <div id="title_repo"><a href="https://github.com/abhishekkr/webhoudini">WebHoudini <i>Github</i> Repo</a></div>
+	  <i>would keep adding more tricks...</i>
+	</div>
+      </td>
+      <td>
+        <div id="axnarea" style="text-align:center;">
+	<span>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
 	        <blockquote>
 		<h3>Un-Shorten URL ~ know the final URL</h3>
 		<form method="get" action="unshort_url" >
-		  URL: <input type="text" name="url" id="url" />
-		  <input type="submit" value="Unshorten" />
+		  Short URL: <input type="text" name="url" id="url" />
+		  <input type="button" value="Unshorten" onClick="fetch_me_result('unshort_url','/unshort_url?url='+document.getElementById('url').value);" /><br/>
+		  <b id="unshort_url"></b>
 		</form>
 		</blockquote>
-             </div>
-	</h5>
-	online: 
-	<a href="https://github.com/abhishekkr">abhishekkr@github</a>,
-	<a href="http://www.twitter.com/aBionic">abionic@twitter</a>
+	<span>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
+        </div>
+      </td>
+      </tr>
+    </table>
+
+	<div>
+	  online: 
+	  <a href="https://github.com/abhishekkr">abhishekkr@github</a>,
+	  <a href="http://www.twitter.com/aBionic">abionic@twitter</a>
+	</div>
+
   </body>
 </html>"""
   return response
