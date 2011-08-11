@@ -9,6 +9,8 @@ from google.appengine.api import urlfetch
 
 def url_trace(self):
   result = urlfetch.fetch(url=self.request.queryvars['url'])
+  if str(result.final_url)=="None":
+    result.final_url = self.request.queryvars['url']
   response = """<html>
     <head>
       <title>Unshorten-URL ~ URL Trace</title>
@@ -25,6 +27,10 @@ def url_trace(self):
   response = response + """</a></h3> as its final destination.
   """
   response = response + """
+      <br/><br/>
+      <h5>
+        <a href="/">HOMEPAGE</a>
+      </h5>
       </div>
     </body>
   </html>"""
