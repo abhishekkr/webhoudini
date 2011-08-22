@@ -5,26 +5,26 @@
 # unshort_url ~ to trace url
 ##
 
+import cgi
+
 from google.appengine.api import urlfetch
 
-def url_trace(self):
+def show_body(self):
   result = urlfetch.fetch(url=self.request.queryvars['url'])
-  if str(result.final_url)=="None":
-    result.final_url = self.request.queryvars['url']
+  if str(result.content)==None:
+    result.content = "BLANK RESOURCE"
   response = """<html>
     <head>
-      <title>Unshorten-URL ~ URL Trace</title>
+      <title>Naked URL ~ all contents of resource served</title>
     </head>
     <body>
-      <div class="main_pg" style="text-align:center;">
+      <div class="main_pg" style="text-align:left;">
       """
   response = response + """
-        <div>The requested URL <h5>""" + self.request.queryvars['url'] + """</h5> has 
-  <h3><a href=\""""
-  response = response + str(result.final_url)
-  response = response + "\">"
-  response = response + str(result.final_url)
-  response = response + """</a></h3> as its final destination.
+        <div>The resource served from requested URL <h5>""" + self.request.queryvars['url'] + """</h5> is
+  <div>"""
+  response = response + cgi.escape(str(result.content))
+  response = response + """</div>
   """
   response = response + """
       <br/><br/>
