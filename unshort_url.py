@@ -8,7 +8,17 @@
 from google.appengine.api import urlfetch
 
 def url_trace(self):
-  result = urlfetch.fetch(url=self.request.queryvars['url'])
+  try:
+    result = urlfetch.fetch(url=self.request.queryvars['url'])
+  except:
+    return """
+    <html><head><title>WebHoudini is sleeping.....</title></head>
+    <body>
+      WebHoudini is sleeping as his servants have failed in fetching the resource from URL.....<br/>
+      Please, check if the Domain &/or URL is correct and returning some response.<br/><br/>
+      <b>$curl -L $URL</b><br/>
+    </body></html>
+    """
   if str(result.final_url)=="None":
     result.final_url = self.request.queryvars['url']
   response = """<html>
