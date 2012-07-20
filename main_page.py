@@ -48,6 +48,11 @@ def index(self):
 	<span>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
         </div>
       </td>
+<!-- Internet Defense League ~begin -->
+      <td>
+      <a href="http://internetdefenseleague.org"><img src="http://internetdefenseleague.org/images/badges/final/shield_badge.png" style='height:230px; width:160px;' alt="Member of The Internet Defense League" /></a>
+      </td>
+<!-- Internet Defense League ~end -->
       </tr>
     </table>
 
@@ -61,6 +66,21 @@ def index(self):
 	  <a href="https://github.com/abhishekkr">abhishekkr@github</a>,
 	  <a href="http://www.twitter.com/aBionic">abionic@twitter</a>
 	</div>
+
+<!-- Internet Defense League ~begin -->
+<script type="text/javascript">
+window._idl = {};
+_idl.variant = "banner";
+_idl.campaign = "idl_launch";
+(function() {
+var idl = document.createElement('script');
+idl.type = 'text/javascript';
+idl.async = true;
+idl.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'members.internetdefenseleague.org/include/?url=' + (_idl.url || '') + '&campaign=' + (_idl.campaign || '') + '&variant=' + (_idl.variant || 'banner');
+document.getElementsByTagName('body')[0].appendChild(idl);
+})();
+</script>
+<!-- Internet Defense League ~end -->
 
   </body>
 </html>"""
