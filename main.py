@@ -3,15 +3,15 @@ it's just here to redirect '/' to '/index.htm'
 the redirect-link could be changed by changing the link below
 """
 
-from google.appengine.ext import webapp
 from google.appengine.ext.webapp import util
 
+import webapp2
 import main_page
 import unshort_url
 import resview_url
 import header_url
 
-class HeadersURL(webapp.RequestHandler):
+class HeadersURL(webapp2.RequestHandler):
   def get(self):
     self.response.headers["Content-Type"] = "text/html"
     self.response.out.write(header_url.show_headers(self))
@@ -19,7 +19,7 @@ class HeadersURL(webapp.RequestHandler):
     self.response.headers["Content-Type"] = "text/html"
     self.response.out.write(header_url.show_headers(self))
 
-class ResViewURL(webapp.RequestHandler):
+class ResViewURL(webapp2.RequestHandler):
   def get(self):
     self.response.headers["Content-Type"] = "text/html"
     self.response.out.write(resview_url.show_body(self))
@@ -27,7 +27,7 @@ class ResViewURL(webapp.RequestHandler):
     self.response.headers["Content-Type"] = "text/html"
     self.response.out.write(resview_url.show_body(self))
 
-class UnShortenURL(webapp.RequestHandler):
+class UnShortenURL(webapp2.RequestHandler):
   def get(self):
     self.response.headers["Content-Type"] = "text/html"
     self.response.out.write(unshort_url.url_trace(self))
@@ -35,7 +35,7 @@ class UnShortenURL(webapp.RequestHandler):
     self.response.headers["Content-Type"] = "text/html"
     self.response.out.write(unshort_url.url_trace(self))
 
-class MainHandler(webapp.RequestHandler):
+class MainHandler(webapp2.RequestHandler):
   def get(self):
     self.response.headers["Content-Type"] = "text/html"
     self.response.out.write(main_page.index(self))
@@ -44,7 +44,7 @@ class MainHandler(webapp.RequestHandler):
     self.response.out.write(main_page.index(self))
 
 def main():
-  application = webapp.WSGIApplication(
+  application = webapp2.WSGIApplication(
     [
           ('/', MainHandler),
           (r'/unshort_url(?:/\w+)*', UnShortenURL),
