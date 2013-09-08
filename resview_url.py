@@ -30,12 +30,13 @@ def show_body(self):
   _format = self.request.get('f')
   try:
     result = urlfetch.fetch(url=_url)
+    result_content = result.content.decode('utf-8').encode('ASCII', 'ignore')
     if _format == 'vanilla':
       html_for_others(self)
-      return result.content
+      return result_content
     elif _format == 'safe':
       html_for_others(self)
-      return cgi.escape(str(result.content))
+      return cgi.escape(str(result_content))
 
   except Exception as err:
     return err
@@ -48,26 +49,24 @@ def show_body(self):
     </body></html>
     """
 
-  if str(result.content)==None:
-    result.content = "BLANK RESOURCE"
+  if str(result_content)==None:
+    result_content = "BLANK RESOURCE"
+
   response = """<html>
     <head>
       <title>Naked URL ~ all contents of resource served</title>
     </head>
     <body>
       <div class="main_pg" style="text-align:left;">
-      """
-  response = response + """
         <div>The resource served from requested URL <h5>""" + _url + """</h5> is
-  <div>"""
-  response = response + cgi.escape(str(result.content))
-  response = response + """</div>
-  """
-  response = response + """
-      <br/><br/>
-      <h5>
-      <a href="#" onclick="show_magic()" style="float:right;">[X]Close</a><br/>
-      </h5>
+          <div>
+          """ + cgi.escape(result_content) + """
+          </div>
+          <br/><br/>
+          <h5>
+            <a href="#" onclick="show_magic()" style="float:right;">[X]Close</a><br/>
+          </h5>
+        </div>
       </div>
     </body>
   </html>"""
