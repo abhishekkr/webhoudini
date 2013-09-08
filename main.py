@@ -21,10 +21,8 @@ class HeadersURL(webapp2.RequestHandler):
 
 class ResViewURL(webapp2.RequestHandler):
   def get(self):
-    self.response.headers["Content-Type"] = "text/html"
     self.response.out.write(resview_url.show_body(self))
   def post(self):
-    self.response.headers["Content-Type"] = "text/html"
     self.response.out.write(resview_url.show_body(self))
 
 class UnShortenURL(webapp2.RequestHandler):

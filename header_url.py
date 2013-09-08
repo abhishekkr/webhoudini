@@ -11,7 +11,7 @@ from google.appengine.api import urlfetch
 
 def show_headers(self):
   try:
-    result = urlfetch.fetch(url=self.request.queryvars['url'])
+    result = urlfetch.fetch(url=self.request.get['url'])
   except:
     return """
     <html><head><title>WebHoudini is sleeping.....</title></head>
@@ -36,7 +36,7 @@ def show_headers(self):
       <div class="main_pg" style="text-align:left;">
       """
   response = response + """
-        <div>The HTTP Headers from requested URL <h5>""" + self.request.queryvars['url'] + """</h5> are<br/>
+        <div>The HTTP Headers from requested URL <h5>""" + self.request.get['url'] + """</h5> are<br/>
   <div>"""
   response = response + result_headers
   response = response + """</div>

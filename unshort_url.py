@@ -9,7 +9,7 @@ from google.appengine.api import urlfetch
 
 def url_trace(self):
   try:
-    result = urlfetch.fetch(url=self.request.queryvars['url'])
+    result = urlfetch.fetch(url=self.request.get['url'])
   except:
     return """
     <html><head><title>WebHoudini is sleeping.....</title></head>
@@ -20,7 +20,7 @@ def url_trace(self):
     </body></html>
     """
   if str(result.final_url)=="None":
-    result.final_url = self.request.queryvars['url']
+    result.final_url = self.request.get['url']
   response = """<html>
     <head>
       <title>Unshorten-URL ~ URL Trace</title>
@@ -29,7 +29,7 @@ def url_trace(self):
       <div class="main_pg" style="text-align:center;">
       """
   response = response + """
-        <div>The requested URL <h5>""" + self.request.queryvars['url'] + """</h5> has 
+        <div>The requested URL <h5>""" + self.request.get['url'] + """</h5> has
   <h3><a href=\""""
   response = response + str(result.final_url)
   response = response + "\">"
