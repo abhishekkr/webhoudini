@@ -26,13 +26,14 @@ def show_body(self):
   Responsible for fetching the 'url' body from Web and pass it on.
   """
   self.response.headers["Content-Type"] = "text/html"
-
+  _url = self.request.get('url')
+  _format = self.request.get('f')
   try:
-    result = urlfetch.fetch(url=self.request.get('url'))
-    if self.request.get('f') == 'vanilla':
+    result = urlfetch.fetch(url=_url)
+    if _format == 'vanilla':
       html_for_others(self)
       return result.content
-    elif self.request.get('f') == 'safe':
+    elif _format == 'safe':
       html_for_others(self)
       return cgi.escape(str(result.content))
 
@@ -57,7 +58,7 @@ def show_body(self):
       <div class="main_pg" style="text-align:left;">
       """
   response = response + """
-        <div>The resource served from requested URL <h5>""" + self.request.get['url'] + """</h5> is
+        <div>The resource served from requested URL <h5>""" + _url + """</h5> is
   <div>"""
   response = response + cgi.escape(str(result.content))
   response = response + """</div>

@@ -10,8 +10,10 @@ import cgi
 from google.appengine.api import urlfetch
 
 def show_headers(self):
+  _url = self.request.get('url')
+
   try:
-    result = urlfetch.fetch(url=self.request.get['url'])
+    result = urlfetch.fetch(url=_url)
   except:
     return """
     <html><head><title>WebHoudini is sleeping.....</title></head>
@@ -36,7 +38,7 @@ def show_headers(self):
       <div class="main_pg" style="text-align:left;">
       """
   response = response + """
-        <div>The HTTP Headers from requested URL <h5>""" + self.request.get['url'] + """</h5> are<br/>
+        <div>The HTTP Headers from requested URL <h5>""" + _url + """</h5> are<br/>
   <div>"""
   response = response + result_headers
   response = response + """</div>
